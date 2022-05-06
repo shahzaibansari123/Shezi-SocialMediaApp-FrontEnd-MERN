@@ -35,6 +35,8 @@ export const updatePost=(id, post) => async (dispatch)=>{
         dispatch({type: 'UPDATE', payload: data });
     } catch (error) {
         console.log(error.message)
+        // console.log(error) ye krne se zada info mil jati error k bare me
+
     }
     
  
