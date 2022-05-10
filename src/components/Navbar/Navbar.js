@@ -4,7 +4,7 @@ import useStyles from "./Styles";
 import logo from "../../images/logo.png";
 import { Link } from 'react-router-dom'
 
-export const Navbar = () => {
+const Navbar = () => {
   const classes = useStyles();
   const user = null;
   return (
@@ -31,3 +31,5 @@ export const Navbar = () => {
     </AppBar>
   );
 };
+
+export default Navbar;
