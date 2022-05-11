@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Button,
   Paper,
@@ -13,7 +13,10 @@ import Input from './Input'
 
 const Auth = () => {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false)
   const isSignup = false;
+
+  const handleShowPassword = () => setShowPassword((prevShowPassword)=> !prevShowPassword);
 
   const handleSubmit = () => {};
 
@@ -31,13 +34,14 @@ const Auth = () => {
             {isSignup && (
               <>
                
-                  <TextField name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
-                  <TextField name="firstname" label="First Name" handleChange={handleChange} half />
+                  <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
+                  <Input name="firstname" label="First Name" handleChange={handleChange} half />
                
               </>
             )}
 
             <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
+            <Input name="password" label="Password" handleChange={handleChange} type={  showPassword ? "text": "password"} handleShowPassword={handleShowPassword}/>
           </Grid>
         </form>
       </Paper>
