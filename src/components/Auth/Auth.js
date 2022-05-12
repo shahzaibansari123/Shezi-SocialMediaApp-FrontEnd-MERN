@@ -30,11 +30,12 @@ const Auth = () => {
     handleShowPassword(false)
   };
 
-  const googleSuccess = (res) => {
+  const googleSuccess = async (res) => {
     console.log(res)
   };
 
-  const googleFailure = () => {
+  const googleFailure =  (error) => {
+    console.log(error)
     console.log("Google Sign In was Unsuccessful. Try Again Later !")
   };
 
@@ -61,7 +62,8 @@ const Auth = () => {
              {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <GoogleLogin 
-          clientId='950985589941-o8vpbhui0djnh3fh7eolricd1lad942f.apps.googleusercontent.com'
+          clientId=""
+          plugin_name= "SocialMediaApp"
           render={(renderProps)=>( 
             <Button 
                   className={classes.googleButton} 
