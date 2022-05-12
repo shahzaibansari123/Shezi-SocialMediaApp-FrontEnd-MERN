@@ -1,5 +1,6 @@
 import React from "react";
 import { TextField, Grid, InputAdornment, IconButton } from "@material-ui/core";
+import {GoogleLogin}from'react-google-login';
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
@@ -15,7 +16,7 @@ const Input = ({ half, name, label , handleChange, autoFocus, type, handleShowPa
         label={label}
         autoFocus={autoFocus}
         type={type}
-        InpuProps={
+        InputProps={
           name === "password"
             && {
                 endAdornment: (

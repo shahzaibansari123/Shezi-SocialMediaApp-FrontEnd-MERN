@@ -10,11 +10,13 @@ import {
 import useStyles from "./Styles";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from './Input'
+import GoogleLogin from "react-google-login";
+import Icon from './Icon'
 
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false)
-  const [isSignup,setIsSignup = useState(false);
+  const [isSignup,setIsSignup] = useState(false)
 
   //jb state change krty old state use krke tw call back use krty hein jese k nchy line me horha
   const handleShowPassword = () => setShowPassword((prevShowPassword)=> !prevShowPassword);
@@ -23,8 +25,14 @@ const Auth = () => {
 
   const handleChange = () => {};
 
-  const switchMode = () => {};
+  const switchMode = () => {
+    setIsSignup((prevIsSignup)=> !prevIsSignup)
+    handleShowPassword(false)
+  };
 
+  const googleSuccess = () => {};
+
+  const googleFailure = () => {};
 
   return (
     <Container component="main" maxWidth="xs">
@@ -45,6 +53,22 @@ const Auth = () => {
             <Input name="password" label="Password" handleChange={handleChange} type={ showPassword ? "text": "password"} handleShowPassword={handleShowPassword} />
           {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
           </Grid>
+          <GoogleLogin 
+          clientId={'GOOGLE ID'} 
+          render={(renderProps)=>( 
+            <Button 
+                  className={classes.googleButton} 
+                  color="primary" 
+                  fullwidth 
+                  onClick={renderProps.onClick} 
+                  disabled={renderProps.disabled} 
+                  startIcon={<Icon />} 
+                  variant="contained">
+                    Google Sign In
+                  </Button>
+          )}
+          onSuccess={googleSuccess}
+          onFailure={googleFailure} />
           <Button type="submit" color="primary" fullWidth variant="contained" className={classes.submit}>
              {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
