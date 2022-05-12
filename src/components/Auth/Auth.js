@@ -14,13 +14,17 @@ import Input from './Input'
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false)
-  const isSignup = false;
+  const [isSignup,setIsSignup = useState(false);
 
+  //jb state change krty old state use krke tw call back use krty hein jese k nchy line me horha
   const handleShowPassword = () => setShowPassword((prevShowPassword)=> !prevShowPassword);
 
   const handleSubmit = () => {};
 
   const handleChange = () => {};
+
+  const switchMode = () => {};
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -33,15 +37,23 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-               
                   <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
-                  <Input name="firstname" label="First Name" handleChange={handleChange} half />
-               
+                  <Input name="lastname" label="Last Name" handleChange={handleChange} half />
               </>
             )}
-
             <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
-            <Input name="password" label="Password" handleChange={handleChange} type={  showPassword ? "text": "password"} handleShowPassword={handleShowPassword}/>
+            <Input name="password" label="Password" handleChange={handleChange} type={ showPassword ? "text": "password"} handleShowPassword={handleShowPassword} />
+          {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password"/>}
+          </Grid>
+          <Button type="submit" color="primary" fullWidth variant="contained" className={classes.submit}>
+             {isSignup ? 'Sign Up' : 'Sign In'}
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Button onClick={switchMode}>
+                {isSignup ? 'Already have an Account? Sign In' : "Don't have an Account? Sign Up"}
+              </Button>
+            </Grid>
           </Grid>
         </form>
       </Paper>
