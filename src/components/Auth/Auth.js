@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
   Button,
   Paper,
@@ -12,11 +12,24 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from './Input'
 import GoogleLogin from "react-google-login";
 import Icon from './Icon'
+import { gapi } from 'gapi-script'
+
+const  clientId="950985589941-o8vpbhui0djnh3fh7eolricd1lad942f.apps.googleusercontent.com"
 
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup,setIsSignup] = useState(false)
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    } 
+    gapi.load('client:auth2' , start);
+   })
 
   //jb state change krty old state use krke tw call back use krty hein jese k nchy line me horha
   const handleShowPassword = () => setShowPassword((prevShowPassword)=> !prevShowPassword);
@@ -62,7 +75,7 @@ const Auth = () => {
              {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <GoogleLogin 
-          clientId=""
+          clientId={clientId}
           plugin_name= "SocialMediaApp"
           render={(renderProps)=>( 
             <Button 
@@ -77,7 +90,10 @@ const Auth = () => {
                   </Button>
           )}
           onSuccess={googleSuccess}
-          onFailure={googleFailure} />
+          onFailure={googleFailure} 
+          cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
+          />
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
