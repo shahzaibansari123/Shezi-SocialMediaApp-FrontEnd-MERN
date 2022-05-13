@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Input from './Input'
 import GoogleLogin from "react-google-login";
 import Icon from './Icon'
+import { useDispatch } from 'react-redux'
 import { gapi } from 'gapi-script'
 
 const  clientId="950985589941-o8vpbhui0djnh3fh7eolricd1lad942f.apps.googleusercontent.com"
@@ -20,12 +21,13 @@ const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup,setIsSignup] = useState(false)
+  const dispatch=useDispatch()
 
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: ""
+        scope: " "
       })
     } 
     gapi.load('client:auth2' , start);
@@ -44,7 +46,14 @@ const Auth = () => {
   };
 
   const googleSuccess = async (res) => {
-    console.log(res)
+    const result= res?.profileObj
+    const token= res?.tokenId
+
+    try {
+      dispatch({type: 'AUTH' , data: {result, token}})
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const googleFailure =  (error) => {
@@ -92,7 +101,7 @@ const Auth = () => {
           onSuccess={googleSuccess}
           onFailure={googleFailure} 
           cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
+       
           />
           <Grid container justify="flex-end">
             <Grid item>
