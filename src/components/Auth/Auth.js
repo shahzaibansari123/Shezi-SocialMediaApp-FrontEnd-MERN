@@ -15,6 +15,7 @@ import Icon from './Icon'
 import { useDispatch } from 'react-redux'
 import { gapi } from 'gapi-script'
 import {useHistory} from 'react-router-dom'
+import {signin, signup} from '../../actions/auth'
 
 const  clientId="950985589941-o8vpbhui0djnh3fh7eolricd1lad942f.apps.googleusercontent.com"
 const initialState = { firstName : "" , lastName : "" , email: "" , password : "" , confirmPassword: ""}
@@ -41,10 +42,19 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
+    // console.log(formData)
+    if (isSignup) {
+      dispatch(signup(formData,history))
+      
+    } else {
+      dispatch(signin(formData,history))
+      
+    }
   };
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value})
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup)=> !prevIsSignup)
@@ -79,8 +89,8 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-                  <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
-                  <Input name="lastname" label="Last Name" handleChange={handleChange} half />
+                  <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                  <Input name="lastName" label="Last Name" handleChange={handleChange} half />
               </>
             )}
             <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
