@@ -17,12 +17,13 @@ import { gapi } from 'gapi-script'
 import {useHistory} from 'react-router-dom'
 
 const  clientId="950985589941-o8vpbhui0djnh3fh7eolricd1lad942f.apps.googleusercontent.com"
-
+const initialState = { firstName : "" , lastName : "" , email: "" , password : "" , confirmPassword: ""}
 const Auth = () => {
   const history=useHistory()
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup,setIsSignup] = useState(false)
+  const [formData, setFormData]= useState(initialState)
   const dispatch=useDispatch()
 
   useEffect(() => {
@@ -38,7 +39,10 @@ const Auth = () => {
   //jb state change krty old state use krke tw call back use krty hein jese k nchy line me horha
   const handleShowPassword = () => setShowPassword((prevShowPassword)=> !prevShowPassword);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(formData)
+  };
 
   const handleChange = () => {};
 
