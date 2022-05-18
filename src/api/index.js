@@ -2,6 +2,12 @@ import axios from 'axios'
 
 const API = axios.create({baseURL: 'http://localhost:5000'})
 
+API.interceptors.use((req)=>{
+    if(localStorage.getItem('Profile')){
+        req.headers.Authorization =
+    }
+})
+
 // const url="http://localhost:5000/posts"
 
 export const fetchPosts=()=> API.get('/posts')
