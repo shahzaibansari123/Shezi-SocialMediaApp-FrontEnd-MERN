@@ -34,6 +34,19 @@ const Form = ({currentId, setCurrentId}) => {
   }
   clear()
   };
+
+
+  if(!user?.result?.name){
+    return(
+    <Paper className={classes.paper}>
+    <Typography variant="h6" align="center">
+      Please sign in to create your post or like other's posts</Typography>
+       </Paper>
+  )}
+
+
+
+
   const clear = () => {
     setCurrentId(null)
     setPostData({ 
