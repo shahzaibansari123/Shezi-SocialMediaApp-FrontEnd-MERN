@@ -10,7 +10,7 @@ const Form = ({currentId, setCurrentId}) => {
  const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId ): null);
           
   const [postData,setPostData]=useState({ 
-    creator: '', 
+    // creator: '', 
     title: '', 
     message: '', 
     tags: '', 
@@ -18,6 +18,7 @@ const Form = ({currentId, setCurrentId}) => {
   })
   const classes = useStyles();
   const dispatch = useDispatch()
+  const user= JSON.parse(localStorage.getItem('Profile'))
 
   useEffect(() => {
     if(post) setPostData(post)
@@ -26,10 +27,10 @@ const Form = ({currentId, setCurrentId}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if(currentId){
-      dispatch(updatePost(currentId, postData))
+      dispatch(updatePost(currentId, {...postData, name: user?.result?.name}))
 
     }else{
-    dispatch(createPost(postData))
+    dispatch(createPost({...postData , name: user?.result?.name}))
   }
   clear()
   };
