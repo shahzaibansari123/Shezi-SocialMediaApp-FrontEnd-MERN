@@ -4,6 +4,7 @@ import useStyles from "./Styles";
 import logo from "../../images/logo.png";
 import { Link, useHistory , useLocation} from "react-router-dom";
 import { useDispatch } from "react-redux";
+import decode from 'jwt-decode'
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("Profile")));
@@ -21,9 +22,19 @@ const Navbar = () => {
 
 
   useEffect(() => {
+    
    const token = user?.token
 
+   if(token){
+     const decodedToken= decode(token)
+    // token expire horha ya nh agr horha tw gud he nhhorha tw phr eslint logout issuehe
+
+     if(decodedToken.exp * 1000 < new Date().getTime()) 
+     logout()
+   }
+
    setUser(JSON.parse(localStorage.getItem('Profile')))
+   // eslint-disable-next-line
   }, [location])
 
   return (
