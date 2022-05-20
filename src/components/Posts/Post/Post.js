@@ -102,6 +102,9 @@ const Post = ({ post, setCurrentId }) => {
 
           <Likes />
         </Button>
+
+        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && ( 
+
         <Button
           size="small"
           color="primary"
@@ -110,6 +113,7 @@ const Post = ({ post, setCurrentId }) => {
           <DeleteIcon fontSize="small" />
           Delete{" "}
         </Button>
+        )}
       </CardActions>
     </Card>
     // <div>
