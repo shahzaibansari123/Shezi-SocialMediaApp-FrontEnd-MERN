@@ -29,7 +29,9 @@ const Home = () => {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
-            <Paper className={classes.Pagination}></Paper>
+            <Paper elevation={6} >
+              <Pagination />
+            </Paper>
           </Grid>
         </Grid>
       </Container>
