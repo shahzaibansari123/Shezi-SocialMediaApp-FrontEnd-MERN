@@ -21,6 +21,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const query = useQuery();
   const history = useHistory()
+  const page=query.get('page') || 1;
+  const searchQuery= query.get('searchQuery') 
 
   useEffect(() => {
     dispatch(getPosts());
@@ -28,18 +30,29 @@ const Home = () => {
 
   return (
     <Grow in>
-      <Container>
+      <Container maxWidth="xl">
         <Grid
+        className={classes.gridContainer}
           container
           // className={classes.mainContainer}
           justify="space-between"
           alignItems="stretch"
           spacing={3}
         >
-          <Grid item xs={12} sm={7}>
+          <Grid item xs={12} sm={7} md={9}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={6} md={3}>
+            <AppBar className={classes.appBarSearch} postion="static" color="inherit">
+              <TextField 
+              name="search"
+              variant="outlined" 
+              label=" Search Memories"
+              fullWidth
+              value="TEST"
+              onChange={()=>{}}
+              />
+            </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             <Paper elevation={6} >
               <Pagination />
