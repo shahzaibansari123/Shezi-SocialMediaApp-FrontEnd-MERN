@@ -13,7 +13,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import ChipInput from "material-ui-chip-input";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
-import { getPosts } from "../../actions/posts";
+import { getPosts , getPostsBySearch} from "../../actions/posts";
 import Pagination from "../Pagination";
 
 import useStyles from "./Styles";
@@ -40,6 +40,8 @@ const Home = () => {
 
   const searchPost=()=>{
 if(search.trim()){
+  //array pass nh hoti parametr me url k isliye tags ko strings
+  dispatch(getPostsBySearch({search, tags: tags.join(',')}))
   // dipstch > fetchsearchpost
 }else{
   history.push('/')
@@ -55,7 +57,7 @@ if(search.trim()){
 
   //jb state me array he tw spread opertr krna prt usme  kuch add krne k lye jese neche settags me horha
   const handleAdd = (tag) => setTags([...tags, tag]);
-  
+
   const handleDelete = (tagToDelete) =>
     setTags(tags.filter((tag) => tag !== tagToDelete));
 
