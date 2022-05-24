@@ -39,7 +39,7 @@ const Home = () => {
   }, [currentId, dispatch]);
 
   const searchPost=()=>{
-if(search.trim()){
+if(search.trim() || tags){
   //array pass nh hoti parametr me url k isliye tags ko strings
   dispatch(getPostsBySearch({search, tags: tags.join(',')}))
   // dipstch > fetchsearchpost
