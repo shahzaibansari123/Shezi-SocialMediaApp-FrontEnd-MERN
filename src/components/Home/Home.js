@@ -43,6 +43,7 @@ const Home = () => {
   const searchPost=()=>{
 if(search.trim() || tags){
   //array pass nh hoti parametr me url k isliye tags ko strings
+   //url me Number bh nh jaega islye backend pr page ki limit ko dubara cnvert krengy String se number me
   dispatch(getPostsBySearch({search, tags: tags.join(',') }))
   history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
   // dipstch > fetchsearchpost
@@ -59,6 +60,7 @@ if(search.trim() || tags){
   };
 
   //jb state me array he tw spread opertr krna prt usme  kuch add krne k lye jese neche settags me horha
+ 
   const handleAdd = (tag) => setTags([...tags, tag]);
 
   const handleDelete = (tagToDelete) =>
