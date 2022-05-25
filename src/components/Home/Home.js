@@ -41,7 +41,8 @@ const Home = () => {
   const searchPost=()=>{
 if(search.trim() || tags){
   //array pass nh hoti parametr me url k isliye tags ko strings
-  dispatch(getPostsBySearch({search, tags: tags.join(',')}))
+  dispatch(getPostsBySearch({search, tags: tags.join(',') }))
+  history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
   // dipstch > fetchsearchpost
 }else{
   history.push('/')
