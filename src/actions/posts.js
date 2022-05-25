@@ -2,10 +2,10 @@ import {CREATE, UPDATE, DELETE, FETCH_ALL, FETCH_BY_SEARCH} from '../constants/a
 import * as api from '../api/index.js'
 //Action Creators
 
-export const getPosts=()=> async (dispatch)=>{
+export const getPosts=(page)=> async (dispatch)=>{
     
     try {
-        const {data}= await api.fetchPosts()
+        const {data}= await api.fetchPosts(page)
         dispatch({type: FETCH_ALL, payload: data });
     } catch (error) {
         console.log(error.message)
