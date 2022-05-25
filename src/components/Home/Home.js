@@ -104,8 +104,8 @@ if(search.trim() || tags){
               <Button
                 onClick={searchPost}
                 className={classes.searchButton}
-                color="primary"
-                variant="outlined"
+                color="inherit"
+                variant="contained"
               >
                 Search
               </Button>
