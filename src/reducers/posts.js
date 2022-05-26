@@ -7,7 +7,7 @@ import {
   START_LOADING,
   END_LOADING
 } from "../constants/actionTypes";
-export default (state = [], action) => {
+export default (state = { isloading: true , posts: []}, action) => {
   switch (action.type) {
     case START_LOADING:
       return {
@@ -27,18 +27,19 @@ export default (state = [], action) => {
       };
     case FETCH_BY_SEARCH:
       return {
+        // jb object hota or inner value fetch krni hoti tw us ko spread krna prta ... se just like below 
         ...state,
         posts: action.payload,
       };
     case CREATE:
-      return [...state, action.payload];
+      return {...state, posts: [...state.posts, action.payload]};
     case UPDATE:
       // case LIKE:
-      return state.map((post) =>
+      return {...state, posts: state.posts.map((post) =>
         post._id === action.payload._id ? action.payload : post
-      );
+      )};
     case DELETE:
-      return state.filter((post) => post._id !== action.payload);
+      return {...state, posts: state.posts.filter((post) => post._id !== action.payload)};
     default:
       return state;
   }
