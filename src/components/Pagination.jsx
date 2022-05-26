@@ -16,6 +16,7 @@ const Paginate=({page})=>{
 
      useEffect(()=>{
          if(page) dispatch(getPosts(page))
+        //  maybe error happends due to dispatch in dependncy array
      },[page,dispatch])
      return(
      <Pagination  

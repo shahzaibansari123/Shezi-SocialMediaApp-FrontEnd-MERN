@@ -4,9 +4,20 @@ import {
   DELETE,
   FETCH_ALL,
   FETCH_BY_SEARCH,
+  START_LOADING,
+  END_LOADING
 } from "../constants/actionTypes";
 export default (state = [], action) => {
   switch (action.type) {
+    case START_LOADING:
+      return {
+        ...state, isLoading: true
+
+      };
+      case END_LOADING:
+      return {
+        ...state, isLoading: false
+      };
     case FETCH_ALL:
       return {
         ...state,
