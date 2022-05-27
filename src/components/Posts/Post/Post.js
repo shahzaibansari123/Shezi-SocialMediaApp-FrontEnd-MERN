@@ -45,9 +45,9 @@ const Post = ({ post, setCurrentId }) => {
       );
     }
 
-    const openPost = () => {
-      history.push(`/posts/${post.id}`);
-    }
+    const openPost = () => 
+      history.push(`/posts/${post._id}`);
+    
     return (
       <>
         <ThumbUpAltOutlined fontSize="small" />
@@ -58,7 +58,7 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <Card className={classes.card} raised elevation={6}>
-      <ButtonBase className={classes.cardAction} onClick={openPosts}>
+      <ButtonBase className={classes.cardAction} onClick={openPost}>
       <CardMedia
         className={classes.media}
         image={post.selectedFile}

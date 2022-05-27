@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import moment from 'moment'
 import {useParams, useHistory} from 'react-router-dom'
 import  useStyles from './Styles'
+import {getPost} from '../../actions/posts'
 
 const PostDetails = () => {
     const {post, posts,  isLoading}= useSelector((state)=> state.posts)
@@ -13,7 +14,7 @@ const PostDetails = () => {
     const {id} = useParams
 
     useEffect(() => {
-      
+      dispatch(getPost(id))
     }, [id])
     
   return (
