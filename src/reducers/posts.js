@@ -5,7 +5,8 @@ import {
   FETCH_ALL,
   FETCH_BY_SEARCH,
   START_LOADING,
-  END_LOADING
+  END_LOADING,
+  FETCH_POST
 } from "../constants/actionTypes";
 export default (state = { isloading: true , posts: []}, action) => {
   switch (action.type) {
@@ -31,6 +32,12 @@ export default (state = { isloading: true , posts: []}, action) => {
         ...state,
         posts: action.payload,
       };
+      case FETCH_POST:
+        return {
+          // jb object hota or inner value fetch krni hoti tw us ko spread krna prta ... se just like below 
+          ...state,
+          post: action.payload,
+        };
     case CREATE:
       return {...state, posts: [...state.posts, action.payload]};
     case UPDATE:

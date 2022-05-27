@@ -11,11 +11,20 @@ const PostDetails = () => {
     const dispatch= useDispatch()
     const history = useHistory()
     const classes = useStyles()
-    const {id} = useParams
+    const {id} = useParams()
 
     useEffect(() => {
       dispatch(getPost(id))
     }, [id])
+
+    if(!post) return null;
+
+    if(isLoading){
+      return(
+      <Paper elevation={6} className={classes.loadingPaper}>
+        <CircularProgress  size="7em" />
+      </Paper>
+    )}
     
   return (
     <Paper style={{padding: '20px', borderRadius: '15px'}} elevation={6}>
