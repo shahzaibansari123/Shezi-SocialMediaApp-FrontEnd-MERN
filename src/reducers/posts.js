@@ -6,7 +6,7 @@ import {
   FETCH_BY_SEARCH,
   START_LOADING,
   END_LOADING,
-  FETCH_POST
+  FETCH_POST,
 } from "../constants/actionTypes";
 export default (state = { isloading: true , posts: []}, action) => {
   switch (action.type) {
