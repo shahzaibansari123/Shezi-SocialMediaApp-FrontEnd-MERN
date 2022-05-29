@@ -13,7 +13,9 @@ if(!posts.length && !isLoading) return 'No Posts'
 
 
   return isLoading ? (
-    <CircularProgress />
+    <center>
+    <CircularProgress color="inherit"/>
+    </center>
   ) : (
     <Grid
       className={classes.container}

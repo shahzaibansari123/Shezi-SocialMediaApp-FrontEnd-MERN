@@ -61,6 +61,7 @@ const Post = ({ post, setCurrentId }) => {
   
   return (
     <Card className={classes.card} raised elevation={6}>
+      <ButtonBase className={classes.cardAction} onClick={openPost}>
       <CardMedia
         className={classes.media}
         image={post.selectedFile}
@@ -78,14 +79,15 @@ const Post = ({ post, setCurrentId }) => {
         <Button
           style={{ color: "white" }}
           size="small"
-          onClick={() => setCurrentId(post._id)}
+          onClick={(e) => {
+            e.stopPropagation()
+            setCurrentId(post._id)}}
           >
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
       )}
         {/* as buttonbasemight be hindering thats whyusing openpost fn in a div in order to run evrythng smoothly  */}
-      <ButtonBase className={classes.cardAction} onClick={openPost}>
       {/* <div onClick={openPost}> */}
       <div className={classes.details} >
         <Typography variant="body2" color="textSecondary">
