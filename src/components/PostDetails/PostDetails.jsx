@@ -35,6 +35,8 @@ const PostDetails = () => {
     )}
 
     const recommendedPosts= posts.filter(({_id})=> _id !== post._id)
+
+    const openPost=(_id)=> history.push(`/posts/${_id}`)
     
   return (
     <Paper style={{padding: '20px', borderRadius: '15px'}} elevation={6}>
@@ -61,7 +63,7 @@ const PostDetails = () => {
       <Divider />
       <div className={classes.recommendedPosts}>
         {recommendedPosts.map(({title, message, name, likes, selectedFile, _id})=>(
-          <div>
+          <div style={{margin: '20px' , cursor: 'pointer'}} onClick={()=> openPost(_id)} key={_id}>
             {title}
           </div>
         ))}
