@@ -61,7 +61,8 @@ const Post = ({ post, setCurrentId }) => {
   
   return (
     <Card className={classes.card} raised elevation={6}>
-      <ButtonBase className={classes.cardAction} onClick={openPost}>
+      {/* as button basemight be hindering thats whyusing openpost fn in a div in order to run evrythng smoothly  */}
+      {/* <ButtonBase className={classes.cardAction} onClick={openPost}> */}
       <CardMedia
         className={classes.media}
         image={post.selectedFile}
@@ -85,7 +86,8 @@ const Post = ({ post, setCurrentId }) => {
         </Button>
       </div>
       )}
-      <div className={classes.details}>
+      <div onClick={openPost}>
+      <div className={classes.details} >
         <Typography variant="body2" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
@@ -103,7 +105,8 @@ const Post = ({ post, setCurrentId }) => {
           {post.message}
         </Typography>
       </CardContent>
-      </ButtonBase>
+      </div>
+      {/* </ButtonBase> */}
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
