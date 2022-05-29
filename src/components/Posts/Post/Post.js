@@ -61,13 +61,11 @@ const Post = ({ post, setCurrentId }) => {
   
   return (
     <Card className={classes.card} raised elevation={6}>
-      {/* as button basemight be hindering thats whyusing openpost fn in a div in order to run evrythng smoothly  */}
-      {/* <ButtonBase className={classes.cardAction} onClick={openPost}> */}
       <CardMedia
         className={classes.media}
         image={post.selectedFile}
         title={post.title}
-      />
+        />
       <div className={classes.overlay}>
         <Typography variant="h6">{post.name}</Typography>
         <Typography variant="body2">
@@ -75,18 +73,20 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </div>
       {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && ( 
-      <div className={classes.overlay2}>
+        <div className={classes.overlay2}>
 
         <Button
           style={{ color: "white" }}
           size="small"
           onClick={() => setCurrentId(post._id)}
-        >
+          >
           <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
       )}
-      <div onClick={openPost}>
+        {/* as buttonbasemight be hindering thats whyusing openpost fn in a div in order to run evrythng smoothly  */}
+      <ButtonBase className={classes.cardAction} onClick={openPost}>
+      {/* <div onClick={openPost}> */}
       <div className={classes.details} >
         <Typography variant="body2" color="textSecondary">
           {post.tags.map((tag) => `#${tag} `)}
@@ -105,8 +105,8 @@ const Post = ({ post, setCurrentId }) => {
           {post.message}
         </Typography>
       </CardContent>
-      </div>
-      {/* </ButtonBase> */}
+      </ButtonBase>
+      {/* </div> */}
       <CardActions className={classes.cardActions}>
         <Button
           size="small"
