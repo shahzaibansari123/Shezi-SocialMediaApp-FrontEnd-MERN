@@ -32,6 +32,7 @@ const CommentSection = ({ post }) => {
             </Typography>
           ))}
          </div>
+         {user?.result?.name && ( 
         <div style={{ width: "70%" }}>
           <Typography variant="h6" gutterBottom>
             Write a Comment
@@ -47,7 +48,7 @@ const CommentSection = ({ post }) => {
           />
           <Button style={{marginTop: "10px"}} fullWidth disabled={!comment} onClick={handleClick} color="primary" variant="contained">Comment</Button>
         </div>
-       
+       )}
       </div>
     </div>
   );
